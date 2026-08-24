@@ -1,4 +1,4 @@
-# Laboratorio 2: Estimación del nivel de estrés basada en la respuesta galvánica cutánea (GSR)
+# Laboratorio 2: Estimación del estrés mediante respuesta galvánica cutánea
 
 ## Integrantes
 * Laura Valentina Velásquez Castiblanco (5600846)
