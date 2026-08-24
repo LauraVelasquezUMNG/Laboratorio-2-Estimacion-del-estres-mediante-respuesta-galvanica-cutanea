@@ -1,0 +1,1 @@
+# Laboratorio-2-Estimaci-n-del-estr-s-mediante-respuesta-galv-nica-cut-nea
