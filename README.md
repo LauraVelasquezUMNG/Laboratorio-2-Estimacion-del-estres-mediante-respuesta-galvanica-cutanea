@@ -92,7 +92,7 @@ El microcontrolador ESP32 se configuró en modo I (GSR_ESP32), permitiendo una c
 
 $$R_{piel}=R\left(\frac{V_{CC}-V_{GSR}}{V_{GSR}}\right)$$
 
-Con $R=10\text{k }\Omega$ y $V_{CC}=3.3\text{ V}$. La conductancia de la piel es el inverso de la resistencia $\left(G=\frac{1}{R}\right)$. Así, la conductancia de la piel en $\mu\text{S}$ es:
+Con $R=10\text{k }\Omega$ y $V_{CC}=3.3\text{ V}$. La conductancia de la piel es el inverso de su resistencia $\left(G=\frac{1}{R}\right)$. Así, la conductancia de la piel en $\mu\text{S}$ es:
 
 $$G_{piel} = \frac{V_{GSR}}{R \left( V_{CC} - V_{GSR} \right)} \times 10^{6}$$
 
