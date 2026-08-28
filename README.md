@@ -229,6 +229,81 @@ void determinarNivel()
 }
 ```
 
+### 3. Monitoreo Inalámbrico - Sistema de Alertas
+
+#### 3.1. Servidor Web y Monitoreo Remoto
+
+Para transmitir los datos de forma inalámbrica sin mostrar la onda temporal continua (la cual resulta pesada para la navegación en dispositivos móviles), se adaptó el firmware de la ESP32 para servir una interfaz web en HTML, CSS y JavaScript desde su memoria memoria Flash. Esta página permite visualizar de forma remota y en tiempo real el nivel de estrés clasificado, el porcentaje de incremento respecto al basal y los valores instantáneos de conductancia y resistencia.
+
+#### 3.2. Interfaz Web (HTML/CSS)
+
+En el firmware, la función ``paginaPrincipal()`` construye dinámicamente el documento HTML que se entrega a los clientes al conectarse a la dirección IP de la ESP32 (``192.168.4.1``). La página está optimizada para ser responsiva mediante styles CSS incrustados, garantizando una correcta visualización tanto en navegadores de computador personal como de teléfonos móviles.
+
+```cpp
+// CONSTRUCCIÓN DE LA PÁGINA WEB EN LA ESP32
+
+void paginaPrincipal()
+{
+    String pagina = "";
+    pagina += "<!DOCTYPE html><html><head>";
+    pagina += "<meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1.0'>";
+    pagina += "<title>Monitor GSR</title>";
+
+    // Estilos CSS para el contenedor y los textos
+    pagina += "<style>";
+    pagina += "body{font-family:Arial,sans-serif;text-align:center;margin:0;padding:30px;background:#eeeeee;transition:background 0.3s;}";
+    pagina += ".contenedor{background:white;border-radius:20px;padding:30px;max-width:500px;margin:auto;box-shadow:0 4px 15px rgba(0,0,0,.2);}";
+    pagina += "#nivel{font-size:38px;font-weight:bold;margin:30px 0;transition:color 0.3s;}";
+    pagina += "#porcentaje{font-size:42px;font-weight:bold;transition:color 0.3s;}";
+    pagina += "</style></head><body>";
+
+    // Estructura visual de la interfaz
+    pagina += "<div class='contenedor'>";
+    pagina += "<h1>MONITOR DE GSR</h1>";
+    pagina += "<div id='nivel'>CALIBRANDO...</div>";
+    pagina += "<div id='porcentaje'>0 %</div>";
+    pagina += "<div class='dato'>GSR: <span id='valor'>--</span> &micro;S</div>";
+    pagina += "<div class='dato'>Basal: <span id='base'>--</span> &micro;S</div>";
+    pagina += "<div id='estado'>Mantenga al sujeto en reposo durante 15 segundos</div>";
+    pagina += "</div>";
+```
+
+#### 3.3. Actualización en Tiempo Real (AJAX) - Alertas Visuales
+
+La página web incluye un script en JavaScript que realiza peticiones HTTP periódicas cada $300\text{ ms}$ al endpoint ``/datos`` de la ESP32 mediante ``fetch()``. Al recibir la estructura JSON con las variables procesadas, el script actualiza las etiquetas de texto en pantalla y modifica dinámicamente el color del texto y del fondo de la página para denotar una alerta clara según el nivel de estrés detectado (Verde para Poco Estrés, Amarillo para Estrés Moderado y Rojo para Estrés Elevado).
+
+```cpp
+// Script JavaScript dentro de la página para actualización dinámica via JSON
+    pagina += "<script>";
+    pagina += "function actualizar(){";
+    pagina += "fetch('/datos').then(r=>r.json()).then(d=>{";
+    pagina += "document.getElementById('nivel').innerHTML=d.nivel;";
+    pagina += "document.getElementById('porcentaje').innerHTML=d.porcentaje+' %';";
+    pagina += "document.getElementById('valor').innerHTML=d.conductancia;";
+
+    // Cambio dinámico de colores y alertas visuales
+    pagina += "if(d.nivel=='POCO ESTRES'){";
+    pagina += "  document.getElementById('nivel').style.color='green';";
+    pagina += "  document.body.style.background='#ccffcc';"; // Fondo verde
+    pagina += "}else if(d.nivel=='ESTRES MODERADO'){";
+    pagina += "  document.getElementById('nivel').style.color='#d4aa00';";
+    pagina += "  document.body.style.background='#fff0cc';"; // Fondo amarillo
+    pagina += "}else if(d.nivel=='ESTRES ELEVADO'){";
+    pagina += "  document.getElementById('nivel').style.color='red';";
+    pagina += "  document.body.style.background='#ffcccc';"; // Fondo rojo
+    pagina += "}";
+    pagina += "});}";
+    pagina += "setInterval(actualizar,300);"; // Actualización cada 300ms
+    pagina += "</script></body></html>";
+
+    server.send(200, "text/html", pagina);
+}
+```
+
+A continuación, se observa la interfaz web en funcionamiento desplegando las métricas en tiempo real y el indicador visual de alerta:
+
+<img width="1195" height="897" alt="image" src="https://github.com/user-attachments/assets/3886fc95-35fc-44fd-9959-6f9e3ca21db5" />
+
 > ### Parte C
 
 ### 1. Procedimiento General
