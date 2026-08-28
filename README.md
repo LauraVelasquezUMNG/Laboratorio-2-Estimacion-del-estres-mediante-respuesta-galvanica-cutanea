@@ -26,7 +26,7 @@ El dispositivo vestible se construyó con dos electrodos, elaborados a partir de
 
 Al energizar el sistema se ejecutó una rutina de calibración de $15\ \text{s}$, durante la cual el sujeto permaneció sentado y en reposo, promediando la conductancia registrada para establecer la línea base (SCL). A partir de este basal, el firmware calculó en cada ciclo de muestreo el cambio porcentual de conductancia y lo clasificó en tres niveles (poco estrés, estrés moderado, estrés elevado) según los umbrales definidos en la Parte B ($5\ \%$ y $20\ \%$).
 
-Sobre esta base se evaluó el comportamiento del dispositivo ante tres condiciones: (i) una inspiración profunda súbita con el sujeto sentado, (ii) el paso de sedente a bípedo (puesta en pie) y (iii) actividad física de impacto (skipping), con el fin de contrastar la respuesta ante distintos tipos y magnitudes de activación simpática. Finalmente, se registró el sistema operando de forma completamente inalámbrica, visualizando en el celular el nivel de estrés estimado mientras el sujeto resolvía una tarea que demandaba concentración.
+Sobre esta base se evaluó el comportamiento del dispositivo ante tres condiciones: (I) una inspiración profunda súbita con el sujeto sentado, (II) el paso de sedente a bípedo (puesta en pie) y (III) actividad física de impacto (skipping), con el fin de contrastar la respuesta ante distintos tipos y magnitudes de activación simpática. Finalmente, se registró el sistema operando de forma completamente inalámbrica, visualizando en el celular el nivel de estrés estimado mientras el sujeto resolvía una tarea que demandaba concentración.
 
 > [!NOTE]
 > La calibración de $15\ \text{s}$ con el sujeto en reposo es el paso clave del sistema, debido a que todos los umbrales de clasificación posteriores (POCO ESTRÉS, ESTRÉS MODERADO, ESTRÉS ELEVADO) se calculan como cambio porcentual respecto a este basal individual, y no como valores absolutos.
@@ -64,19 +64,17 @@ La inspiración súbita, por su parte, al ser un estímulo puramente autonómico
 
 El skipping, siendo la actividad más dinámica de las tres pruebas, mostró el patrón con mayor detalle de la serie: múltiples picos y valles a lo largo del registro (t ≈ 4-5 s, 7-9 s, 12-13 s y 21 s), reflejo de la naturaleza sostenida y rítmica del ejercicio, en contraste con la SCR única de la inspiración. Este comportamiento evidencia que el sistema es capaz de capturar señal útil incluso durante movimiento activo.
 
-**3.3 Análisis 1 — Aplicabilidad del sistema en entornos cotidianos de baja movilidad**
+**3.3 Análisis 1 — Aplicabilidad del sistema en entornos cotidianos**
 
-El sistema, al operar de forma completamente inalámbrica y visualizarse en un celular sin necesidad de software adicional, resulta especialmente idóneo para escenarios de baja a moderada movilidad, como el trabajo de oficina, la actividad académica en aula o tareas domésticas sedentarias, donde el interés es detectar picos de activación simpática asociados a carga cognitiva o emocional, tal como se evidenció en el registro de "estrés elevado" durante la tarea de concentración. En estos contextos, con la mano relativamente quieta sobre el electrodo, la señal de conductancia refleja de forma confiable el estado autonómico real del usuario, validando el sistema como una herramienta práctica de monitoreo cotidiano.
-
-De cara a escenarios con mayor movilidad, el sistema ya sienta un principio de funcionamiento sólido, con una clara proyección hacia versiones futuras que amplíen su alcance a contextos con desplazamiento activo.
+El sistema, al operar de forma completamente inalámbrica y visualizarse en un celular sin necesidad de software adicional, resulta idóneo para distintos escenarios cotidianos, como el trabajo de oficina, la actividad académica en aula o tareas domésticas, donde el interés es detectar picos de activación simpática asociados a carga cognitiva o emocional, tal como se evidenció en el registro de "estrés elevado" durante la tarea de concentración. Esto valida el sistema como una herramienta práctica de monitoreo continuo del estado autonómico del usuario.
 
 **3.4 Análisis 2 — Alcance y proyección hacia el monitoreo de estrés neonatal**
 
-El principio de medición (electrodos de contacto sobre la piel y un divisor resistivo con umbrales relativos al basal) resulta prometedor de cara a una eventual aplicación en neonatos, dado que la actividad electrodérmica ha sido utilizada en unidades neonatales como indicador de dolor y estrés. El sistema desarrollado en esta práctica demuestra con éxito ese principio de medición base: adquisición de la señal, cálculo de un basal individual y clasificación relativa del nivel de activación.
+El principio de medición implementado (electrodos de contacto cutáneo acoplados a un divisor resistivo, con umbrales de clasificación relativos a un basal individual) es teóricamente extrapolable a la población neonatal, dado que la actividad electrodérmica ha sido empleada en unidades de cuidado neonatal como indicador de dolor y estrés. El sistema desarrollado en esta práctica valida satisfactoriamente dicho principio: adquisición de la señal, establecimiento de un basal individual y clasificación relativa del nivel de activación.
 
-Para dar el siguiente paso hacia esa población, el desarrollo podría enfocarse en tres frentes de mejora: electrodos de menor tamaño y materiales biocompatibles, adaptados a la piel neonatal; una recalibración de los umbrales de clasificación con base en la fisiología propia de esta población; y una validación de seguridad eléctrica bajo normativa pediátrica específica. Estos ajustes son evolutivos más que estructurales, ya que el principio de funcionamiento validado en esta práctica se mantendría como base del sistema.
+Su extensión hacia esta población requeriría, no obstante, tres adaptaciones específicas: el rediseño de los electrodos con dimensiones y materiales biocompatibles apropiados para la piel neonatal; la recalibración de los umbrales de clasificación con base en la fisiología electrodérmica propia de esta población; y la validación de la seguridad eléctrica del dispositivo conforme a la normativa pediátrica correspondiente. Estas modificaciones constituyen ajustes sobre una arquitectura ya validada, más que un rediseño integral del sistema.
 
-Por lo tanto, el trabajo desarrollado constituye una prueba de concepto sólida del principio de medición, con una ruta de evolución clara hacia aplicaciones más especializadas como el monitoreo neonatal.
+En consecuencia, el sistema desarrollado constituye una prueba de concepto sólida del principio de medición empleado, con potencial de extensión hacia aplicaciones especializadas como el monitoreo del estrés neonatal.
 
 ### 4. Preguntas para la Discusión
 
