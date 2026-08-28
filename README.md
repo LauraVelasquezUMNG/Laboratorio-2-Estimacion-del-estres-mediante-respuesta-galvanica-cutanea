@@ -28,6 +28,8 @@ Distintos estudios han demostrado que la GSR responde de forma medible ante est�
 
 La GSR también se ha aplicado en campos más amplios que la psicofisiología clásica: como señal de biorretroalimentación en el manejo de condiciones neurológicas [5], y como medida de referencia en estudios de toma de decisiones y comportamiento bajo incertidumbre. Esta versatilidad, más la sencillez de su instrumentación (dos electrodos y un circuito de bajo voltaje) es lo que hace de la GSR una señal atractiva para un dispositivo vestible orientado a estimar el nivel de estrés percibido por una persona.
 
+> ### Parte B
+
 > ### Parte C
 
 ### 1. Procedimiento General
