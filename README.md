@@ -45,6 +45,7 @@ Sobre esta base se evaluó el comportamiento del dispositivo ante tres condicion
 > [!NOTE]
 > La calibración de $15\ \text{s}$ con el sujeto en reposo es el paso clave del sistema, debido a que todos los umbrales de clasificación posteriores (POCO ESTRÉS, ESTRÉS MODERADO, ESTRÉS ELEVADO) se calculan como cambio porcentual respecto a este basal individual, y no como valores absolutos.
 
+
 ### 2. Resultados Obtenidos
 
 **Inspiración súbita:** Partiendo de un basal de aproximadamente $0.68\ \text{V}$, la señal mostró oscilaciones leves asociadas al ciclo respiratorio en reposo hasta el segundo $16$, momento en el que se presentó un ascenso pronunciado hasta un pico de $0.905\ \text{V}$ ($t \approx 19\ \text{s}$), seguido de un retorno lento y monotónico hacia $0.75\ \text{V}$ al finalizar el registro, sin alcanzar el valor basal en los $30\ \text{s}$ observados.
@@ -69,6 +70,7 @@ Sobre esta base se evaluó el comportamiento del dispositivo ante tres condicion
 
 > [!NOTE]
 > Los valores de conductancia de esta tabla se calcularon aplicando la misma fórmula del firmware ($G = V / [R \cdot (V_{CC}-V)] \times 10^6$) a las señales de voltaje registradas por MATLAB mediante el endpoint /acquire.
+
 
 ### 3. Análisis de Resultados
 
@@ -96,6 +98,7 @@ Su extensión hacia esta población requeriría, no obstante, tres adaptaciones 
 
 En consecuencia, el sistema desarrollado constituye una prueba de concepto sólida del principio de medición empleado, con potencial de extensión hacia aplicaciones especializadas como el monitoreo del estrés neonatal.
 
+
 ### 4. Preguntas para la Discusión
 
 **Pregunta 1: ¿A qué se debe que una inspiración profunda incremente la magnitud de la respuesta galvánica cutánea (GSR)?**
@@ -112,11 +115,13 @@ Esto concuerda con lo observado: el ascenso de la señal fue rápido, propio de 
 
 *Desventajas:* Al ser una señal de contacto, su calidad puede variar según las condiciones de sujeción del electrodo, y al no diferenciar la causa de la activación simpática, un mismo incremento de conductancia puede deberse a estrés, esfuerzo físico, sorpresa o excitación positiva [6]. A esto se suma la variabilidad interindividual en la reactividad de las glándulas sudoríparas [5], que hace necesario calibrar el basal en cada sujeto, como se hizo en esta práctica, para obtener lecturas comparables dentro de una misma persona. Asimismo, al tratarse de una señal periférica de latencia relativamente lenta en su fase de recuperación, la GSR no resulta adecuada para el seguimiento de eventos de muy corta duración, siendo más útil en aplicaciones que buscan tendencias generales de activación que en la detección precisa de estímulos puntuales muy próximos entre sí [8].
 
+
 ### 5. Conclusiones
 
 El dispositivo desarrollado permitió capturar y clasificar en tiempo real, de forma completamente inalámbrica, las variaciones de la respuesta galvánica cutánea ante distintos tipos de estímulos, cumpliendo el objetivo general de la práctica. La comparación entre condiciones evidenció que la magnitud de la respuesta refleja la naturaleza de cada estímulo: estímulos autonómicos puros (inspiración) generan respuestas proporcionales y bien definidas, mientras que estímulos que combinan activación simpática con movimiento (puesta en pie, correr) producen respuestas más amplias y dinámicas, enriqueciendo la lectura del estado autonómico del sujeto.
 
 La GSR se confirmó como un indicador fisiológicamente coherente y de reacción rápida ante la activación simpática, validando el principio de medición implementado en el sistema. Su mayor fortaleza radica en el monitoreo relativo de un mismo sujeto respecto a su propio basal, ofreciendo una lectura confiable y en tiempo real del estado autonómico tanto en contextos de baja movilidad, como el trabajo de oficina o el estudio, como durante actividad física, según se evidenció en el registro obtenido durante el skipping.
+
 
 ### Referencias Bibliográficas
 
