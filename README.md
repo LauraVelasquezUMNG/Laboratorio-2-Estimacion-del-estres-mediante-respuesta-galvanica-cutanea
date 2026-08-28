@@ -5,6 +5,16 @@
 * Carlos Felipe Moreno Guzmán (5600881)
 * Juan Andrés Mateus Durán (5600787)
 
+## Objetivos
+
+### Objetivo General
+Desarrollar un sistema vestible capaz de estimar el nivel de estrés de una persona a partir de la respuesta galvánica cutánea (GSR).
+
+### Objetivos Específicos
+- Identificar las componentes estacionaria y transitoria de la señal de GSR.
+- Diseñar un sistema capaz de capturar de forma continua e inalámbrica las variaciones de la conductancia cutánea.
+- Clasificar el nivel de estrés percibido por el sujeto a partir del cambio porcentual de la GSR respecto a un basal individual.
+
 > ### Parte A
 ### **1. Revisión de la literatura**
 
