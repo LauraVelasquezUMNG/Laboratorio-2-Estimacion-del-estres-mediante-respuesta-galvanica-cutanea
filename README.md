@@ -30,6 +30,8 @@ La GSR también se ha aplicado en campos más amplios que la psicofisiología cl
 
 > ### Parte B
 
+
+
 > ### Parte C
 
 ### 1. Procedimiento General
