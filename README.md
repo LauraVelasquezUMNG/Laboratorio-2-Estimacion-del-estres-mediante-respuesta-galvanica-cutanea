@@ -20,23 +20,72 @@ Desarrollar un sistema vestible capaz de estimar el nivel de estrés de una pers
 
 #### **Actividad electrodérmica (EDA) y respuesta galvánica cutánea (GSR)**
 
-La actividad electrodérmica (EDA) agrupa todos los fenómenos eléctricos que ocurren a nivel de la piel, entre ellos las variaciones de su capacidad para conducir electricidad, conocida como conductancia cutánea [1]. Esta conductancia no es constante: presenta un nivel basal o estacionario (SCL) sobre el cual se superponen cambios rápidos y transitorios llamados respuestas de conductancia cutánea o Skin Conductance Response (SCR). Cada SCR se caracteriza por un ascenso súbito seguido de un retorno mucho más lento al valor basal, con parámetros típicos como latencia, tiempo de subida, amplitud y tiempo de recuperación al 50 % [4].
+La actividad electrodérmica (EDA) agrupa todos los fenómenos eléctricos que ocurren a nivel de la piel, entre ellos las variaciones de su capacidad para conducir electricidad, conocida como conductancia cutánea [1]. Esta conductancia no es constante: presenta un nivel basal o estacionario (SCL) sobre el cual se superponen cambios rápidos y transitorios llamados respuestas de conductancia cutánea o Skin Conductance Response (SCR). Cada SCR se caracteriza por un ascenso súbito seguido de un retorno mucho más lento al valor basal, con parámetros típicos como latencia, tiempo de subida, amplitud y tiempo de recuperación al 50 % [1].
 
 Fisiológicamente, estos cambios se explican por la activación del sistema nervioso simpático sobre las glándulas sudoríparas ecrinas: al aumentar la actividad simpática se incrementa la secreción de sudor y, con ella, la conductividad eléctrica de la piel [1]. Por esta razón, la EDA se considera un indicador no invasivo y de bajo costo del estado de activación (arousal) autonómico, sensible tanto a estímulos emocionales como a estímulos físicos.
 
 Distintos estudios han demostrado que la GSR responde de forma medible ante estímulos que producen dolor o carga cognitiva. Por ejemplo, se ha reportado que estímulos térmicos dolorosos generan incrementos consistentes en la conductancia cutánea, correlacionados con la intensidad percibida del dolor [2]. De manera similar, se ha encontrado que las respuestas de conductancia cutánea permiten discriminar entre distintas intensidades de un estímulo doloroso inducido experimentalmente, aunque con limitaciones en su capacidad de discriminación fina [3]. Estos hallazgos respaldan el uso de la GSR como indicador cuantitativo de activación fisiológica ante tareas que demandan esfuerzo o generan tensión, como ocurre durante la resolución de problemas bajo presión de tiempo.
 
-La GSR también se ha aplicado en campos más amplios que la psicofisiología clásica: como señal de biorretroalimentación en el manejo de condiciones neurológicas [5], y como medida de referencia en estudios de toma de decisiones y comportamiento bajo incertidumbre. Esta versatilidad, más la sencillez de su instrumentación (dos electrodos y un circuito de bajo voltaje) es lo que hace de la GSR una señal atractiva para un dispositivo vestible orientado a estimar el nivel de estrés percibido por una persona.
+La GSR también se ha aplicado en campos más amplios que la psicofisiología clásica: como señal de biorretroalimentación en el manejo de condiciones neurológicas [3], y como medida de referencia en estudios de toma de decisiones y comportamiento bajo incertidumbre. Esta versatilidad, más la sencillez de su instrumentación (dos electrodos y un circuito de bajo voltaje) es lo que hace de la GSR una señal atractiva para un dispositivo vestible orientado a estimar el nivel de estrés percibido por una persona.
+
+#### **Efectos de la corriente directa y alterna en seres humanos (IEC 60479-1)**
+
+La norma IEC 60479-1 establece las zonas de tiempo-corriente que describen el efecto fisiológico de una corriente eléctrica que atraviesa el cuerpo humano, en función de su magnitud, duración, trayectoria y tipo (alterna o directa) [4]. Los cinco efectos fisiológicos progresivos considerados por la norma son:
+
+1. Umbral de percepción: la corriente mínima a partir de la cual una persona nota una sensación de hormigueo. Para corriente alterna (15–100 Hz) este umbral es de aproximadamente 0.5 mA; para corriente directa el umbral es más alto (del orden de 2 mA), porque la DC no estimula los receptores sensoriales con la misma eficacia que la AC [4].
+2. Umbral de reacción: corriente a partir de la cual se produce un movimiento reflejo involuntario, sin llegar a la contracción muscular sostenida.
+3. Umbral de "no soltar": corriente máxima a la cual una persona que sostiene un electrodo todavía puede soltarlo voluntariamente. En AC este umbral se ubica típicamente entre 10 y 16 mA (con un valor de referencia de 10 mA para el 0.5 % de la población), mientras que en DC es notablemente más alto, del orden de 75 mA para un hombre adulto, ya que la corriente directa no produce la tetanización muscular sostenida característica de la AC [4].
+4. Umbral de fibrilación ventricular: a partir de aproximadamente 30–50 mA (dependiendo de la trayectoria y duración) en AC aumenta significativamente el riesgo de fibrilación ventricular; en DC el umbral correspondiente es de 2 a 5 veces mayor que en AC para tiempos de exposición equivalentes [4].
+5. Quemaduras y daño tisular: para corrientes superiores a ~70 mA sostenidas, la energía disipada en los tejidos puede producir quemaduras localizadas, independientemente de si la corriente es AC o DC [4].
+
+En síntesis, para una misma magnitud de corriente la corriente directa es fisiológicamente menos peligrosa que la alterna en el rango de bajas frecuencias (15–100 Hz), principalmente porque el "no soltar" y la fibrilación ventricular requieren corrientes DC mayores que las de AC. Esto es relevante para el diseño del dispositivo GSR: al alimentar el circuito con una fuente DC de bajo voltaje (+3.3 a +5 V) y limitar la corriente muy por debajo del umbral de percepción (0.5–2 mA), se garantiza que el sujeto de prueba no experimente ningún efecto fisiológico perceptible, y muchísimo menos un riesgo de seguridad.
+
+#### **Cálculo de la corriente máxima a través de la piel (peor caso: R_skin = 0 Ω)**
+
+El objetivo es garantizar que, con una fuente de alimentación DC entre +3.3 V y +5 V, la corriente que circula por la piel del sujeto no supere 1 mA, incluso en el caso extremo en que la resistencia de la piel se comporte como un cortocircuito (R_skin = 0 Ω).
+
+El sistema debe incluir una resistencia limitadora R en serie entre la fuente y los electrodos, de modo que la corriente quede acotada por la ley de Ohm:
+
+I = V / (R + R_skin)
+
+En el peor caso (R_skin = 0 Ω), toda la caída de tensión ocurre sobre R, por lo que:
+
+I_max = V / R
+
+Despejando la resistencia mínima necesaria para que I_max ≤ 1 mA:
+
+R_min = V / I_max
+Para V = 3.3 V → R_min = 3.3 V / 1 mA = 3.3 kΩ
+Para V = 5 V → R_min = 5 V / 1 mA = 5 kΩ
+
+Como el diseño debe ser seguro en todo el rango de alimentación (3.3–5 V), se debe dimensionar R para el caso más exigente, es decir, el voltaje más alto:
+
+R ≥ 5 kΩ
+
+I_max = 5 V / 68 kΩ ≈ 73.5 µA
+
+Este valor está muy por debajo de 1 mA (aproximadamente 13.6 veces menor que la corriente máxima permitida), lo que confirma que la resistencia de 68 kΩ ofrece un margen de seguridad amplio incluso si la piel del sujeto llegara a comportarse como un cortocircuito. Esta misma resistencia, junto con el condensador de 1 µF especificado en los materiales, también puede cumplir una función adicional de filtrado, útil para atenuar ruido de alta frecuencia en la señal GSR.
+
+#### **Diseño del dispositivo vestible**
+
+Para la captura de la respuesta galvánica cutánea se diseñó un dispositivo vestible en forma de manilla, ubicado en la palma de la mano, región anatómica seleccionada por su alta densidad de glándulas sudoríparas ecrinas y su sensibilidad conocida a la actividad simpática, lo que la convierte en un sitio estándar para la adquisición de señales de EDA/GSR con buena relación señal-ruido.
+
+- Electrodos: como elemento sensor se emplearon dos electrodos metálicos reutilizados de la carcasa de baterías grandes, aprovechando su superficie de contacto amplia y su naturaleza conductora. Se optó por esta alternativa metálica por su disponibilidad y facilidad de fijación mecánica sobre la manilla.
+
+- Sujeción: los electrodos se fijaron a una cinta de velcro, que permite ajustar la manilla firmemente alrededor de la palma para asegurar un contacto piel-electrodo constante y minimizar artefactos de movimiento durante la adquisición, sin comprometer la comodidad del sujeto de prueba durante el uso prolongado del dispositivo.
+
+- Transmisión: para la adquisición y transmisión de la señal se utilizó un microcontrolador ESP32 por contar con conectividad Wi-Fi/Bluetooth integrada, lo que permitió cumplir con la transmisión inalámbrica de los datos hacia el computador sin necesidad de módulos de comunicación adicionales para la visualización de los parámetros seleccionados.
+
+En conjunto, el dispositivo integra el circuito divisor de tensión, con el ESP32, formando un sistema vestible compacto capaz de capturar y transmitir de forma continua las variaciones de la conductancia cutánea del sujeto.
+
+<img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/b14ce791-77f2-41df-ab4b-fe3863e7c399" />
+
+Figura 1. Dispositivo vestible desarrollado para la captura de la GSR: manilla de velcro con electrodos metálicos ubicada en la palma de la mano, conectada a un ESP32 para la adquisición y transmisión inalámbrica de la señal.
+
 
 > ### Parte B
 
-### 1. Captura en Tiempo Real - Evaluación de la Señal
 
-Para la etapa de adquisición y procesamiento digital, el circuito de acondicionamiento de la señal GSR se montó en protoboard y se conectó al pin analógico $GPIO34$ de la tarjeta de desarrollo ESP32. La programación y el despliegue del firmware se llevaron a cabo utilizando _**Visual Studio Code**_ (VS Code) junto con el entorno de desarrollo **_PlatformIO_**, aprovechando sus herramientas de depuración y gestión de librerías para proyectos basados en el entorno de Arduino.
-
-El microcontrolador ESP32 se configuró en modo I (GSR_ESP32), permitiendo una comunicación inalámbrica directa con el equipo de cómputo sin depender de una red externa. El firmware ejecuta un muestreo continuo a una frecuencia de $100\text{ Hz}$ ($10\text{ ms}$ entre lecturas). Cada valor del ADC de 12 bits ($0 - 4095$) se convierte a su equivalente en voltaje ($0 - 3.3\text{ V}$) y posteriormente se transforma a unidades de conductancia en microSiemens ($\mu\text{S}$), por medio de la expresión que define la resistencia de la piel.
-
-$$R_{piel} = R \cdot \frac{V_{CC}-V_{GSR}}{V_{GSR}}$$
 
 > ### Parte C
 
@@ -130,6 +179,14 @@ La GSR se confirmó como un indicador fisiológicamente coherente y de reacción
 
 
 ### Referencias Bibliográficas
+
+[1] Boucsein, W. (2012). Electrodermal activity. Springer Science & Business Media.
+
+[2] Loggia, M. L., Juneau, M., & Bushnell, C. M. (2011). Autonomic responses to heat pain: Heart rate, skin conductance, and their relation to verbal ratings and stimulus intensity. Pain, 152(3), 592–598. https://doi.org/10.1016/j.pain.2010.11.032
+
+[3] Breimhorst, M., Sandrock, S., Fechir, M., Hausenblas, N., Geber, C., & Birklein, F. (2011). Do intensity ratings and skin conductance responses reliably discriminate between different stimulus intensities in experimentally induced pain? The Journal of Pain, 12(1), 61–70. https://doi.org/10.1016/j.jpain.2010.04.012
+
+[4] International Electrotechnical Commission. (2018). IEC 60479-1:2018 — Effects of current on human beings and livestock — Part 1: General aspects. IEC.
 
 [5] W. Boucsein, *Electrodermal Activity*. Nueva York, NY, Estados Unidos: Springer Science & Business Media, 2012.
 
