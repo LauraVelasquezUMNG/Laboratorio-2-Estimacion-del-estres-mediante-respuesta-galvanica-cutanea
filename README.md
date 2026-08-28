@@ -42,28 +42,46 @@ En síntesis, para una misma magnitud de corriente la corriente directa es fisio
 
 #### **Cálculo de la corriente máxima a través de la piel (peor caso: R_skin = 0 Ω)**
 
-El objetivo es garantizar que, con una fuente de alimentación DC entre +3.3 V y +5 V, la corriente que circula por la piel del sujeto no supere 1 mA, incluso en el caso extremo en que la resistencia de la piel se comporte como un cortocircuito (R_skin = 0 Ω).
+Considerando el circuito equivalente formado por la resistencia limitadora $R$ en serie  con la resistencia de la piel $R_{skin}$, la corriente que circula por el sujeto está dada por:
 
-El sistema debe incluir una resistencia limitadora R en serie entre la fuente y los electrodos, de modo que la corriente quede acotada por la ley de Ohm:
-```
-I = V / (R + R_skin)
-```
-En el peor caso (R_skin = 0 Ω), toda la caída de tensión ocurre sobre R, por lo que:
-```
-I_max = V / R
-```
-Despejando la resistencia mínima necesaria para que I_max ≤ 1 mA:
-```
-R_min = V / I_max
-Para V = 3.3 V → R_min = 3.3 V / 1 mA = 3.3 kΩ
-Para V = 5 V → R_min = 5 V / 1 mA = 5 kΩ
-```
-Como el diseño debe ser seguro en todo el rango de alimentación (3.3–5 V), se debe dimensionar R para el caso más exigente, es decir, el voltaje más alto:
-```
-R ≥ 5 kΩ
+\begin{equation}
+I = \frac{V}{R + R_{skin}}
+\label{eq:corriente_general}
+\end{equation}
 
-I_max = 5 V / 68 kΩ ≈ 73.5 µA
-```
+En el peor caso, cuando la piel se comporta como un cortocircuito ($R_{skin} = 0\ \Omega$), toda la caída de tensión ocurre sobre $R$, por lo que la corriente máxima queda expresada como:
+
+\begin{equation}
+I_{max} = \frac{V}{R}
+\label{eq:corriente_max}
+\end{equation}
+
+Despejando la resistencia mínima necesaria para garantizar que $I_{max} \leq 1\ \text{mA}$:
+
+\begin{equation}
+R_{min} = \frac{V}{I_{max}}
+\label{eq:r_min}
+\end{equation}
+
+Evaluando para los valores extremos del rango de alimentación:
+
+\begin{align}
+V &= 3.3\ \text{V} \quad \Rightarrow \quad R_{min} = \frac{3.3\ \text{V}}{1\ \text{mA}} = 3.3\ \text{k}\Omega \\
+V &= 5\ \text{V} \quad \Rightarrow \quad R_{min} = \frac{5\ \text{V}}{1\ \text{mA}} = 5\ \text{k}\Omega
+\end{align}
+
+Como el diseño debe ser seguro en todo el rango de alimentación (3.3--5 V), se dimensiona $R$ para el caso más exigente, es decir, el voltaje más alto:
+
+\begin{equation}
+R \geq 5\ \text{k}\Omega
+\end{equation}
+
+Verificando la corriente resultante con la resistencia de $68\ \text{k}\Omega$ especificada en los materiales del laboratorio, para el voltaje máximo de alimentación:
+
+\begin{equation}
+I_{max} = \frac{5\ \text{V}}{68\ \text{k}\Omega} \approx 73.5\ \mu\text{A}
+\end{equation}
+
 Este valor está muy por debajo de 1 mA (aproximadamente 13.6 veces menor que la corriente máxima permitida), lo que confirma que la resistencia de 68 kΩ ofrece un margen de seguridad amplio incluso si la piel del sujeto llegara a comportarse como un cortocircuito. Esta misma resistencia, junto con el condensador de 1 µF especificado en los materiales, también puede cumplir una función adicional de filtrado, útil para atenuar ruido de alta frecuencia en la señal GSR.
 
 #### **Diseño del dispositivo vestible**
