@@ -57,11 +57,15 @@ Sobre esta base se evaluó el comportamiento del dispositivo ante tres condicion
 
 **Cambio porcentual de conductancia por condición**
 
+<div align="center">
+  
 | Condición | G basal ($\mu\text{S}$) | G pico ($\mu\text{S}$) | Δ Conductancia (%) |
 |---|:---:|:---:|:---:|
 | Inspiración súbita | $3.82$ | $5.56$ | ≈ 45.6 % |
 | Puesta en pie | $7.35$ | $17.80$ | ≈ 142.1 % |
 | Correr (skipping) | $4.61$ | $5.64$ | ≈ 22.5 % |
+
+</div>
 
 > [!NOTE]
 > Los valores de conductancia de esta tabla se calcularon aplicando la misma fórmula del firmware ($G = V / [R \cdot (V_{CC}-V)] \times 10^6$) a las señales de voltaje registradas por MATLAB mediante el endpoint /acquire.
