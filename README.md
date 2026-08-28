@@ -80,12 +80,103 @@ En conjunto, el dispositivo integra el circuito divisor de tensión, con el ESP3
 
 <img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/b14ce791-77f2-41df-ab4b-fe3863e7c399" />
 
-Figura 1. Dispositivo vestible desarrollado para la captura de la GSR: manilla de velcro con electrodos metálicos ubicada en la palma de la mano, conectada a un ESP32 para la adquisición y transmisión inalámbrica de la señal.
-
-
 > ### Parte B
 
+### 1. Captura en Tiempo Real - Evaluación de la Señal
 
+#### 1.1. Protoboard y Firmware
+
+Para la etapa de adquisición y procesamiento digital, el circuito de acondicionamiento de la señal GSR se montó en protoboard y se conectó al pin analógico $GPIO34$ de la tarjeta de desarrollo ESP32. La programación y el despliegue del firmware se llevaron a cabo utilizando _**Visual Studio Code**_ (VS Code) junto con el entorno de desarrollo **_PlatformIO_**, aprovechando sus herramientas de depuración y gestión de librerías para proyectos basados en el entorno de Arduino.
+
+El microcontrolador ESP32 se configuró en modo I (GSR_ESP32), permitiendo una comunicación inalámbrica directa con el equipo de cómputo sin depender de una red externa. El firmware ejecuta un muestreo continuo a una frecuencia $f_s=100\text{ Hz}$. Cada valor del ADC de 12 bits ($0 - 4095$) se convierte a su equivalente en voltaje ($0 - 3.3\text{ V}$) y posteriormente se transforma a unidades de conductancia en microSiemens ($\mu\text{S}$) partiendo de la expresión de la resistencia de la piel:
+
+$$R_{piel}=R\left(\frac{V_{CC}-V_{GSR}}{V_{GSR}}\right)$$
+
+Con $R=10\text{k }\Omega$ y $V_{CC}=3.3\text{ V}$. La conductancia de la piel es el inverso de la resistencia $\left(G=\frac{1}{R}\right)$. Así, la conductancia de la piel en $\mu\text{S}$ es:
+
+$$G_{piel} = \frac{V_{GSR}}{R \left( V_{CC} - V_{GSR} \right)} \times 10^{6}$$
+
+```cpp
+// Lectura del ADC y conversión a Voltaje y Conductancia en la ESP32
+int valorADC = analogRead(PIN_GSR);
+voltajeGSR = (valorADC / 4095.0) * VCC;
+
+if (voltajeGSR > 0.001 && voltajeGSR < VCC - 0.001) {
+    conductancia_uS = (voltajeGSR / (RFIJA * (VCC - voltajeGSR))) * 1000000.0;
+}
+```
+
+#### 1.2. Comunicación HTTP - MATLAB
+
+Para visualizar la señal tal y como es capturada y analizar su morfología continua, se programó un servidor Web en la ESP32 con la ruta `/acquire`. Esta función reserva memoria dinámica para almacenar la cantidad de muestras solicitadas y las envía en formato JSON hacia el cliente.
+
+```cpp
+// CONFIGURACIÓN Y CREACIÓN DE LA RED WIFI EN LA ESP32
+
+const char* ssid = "GSR_ESP32";
+const char* password = "12345678";
+
+void setup() {
+    // Configura la ESP32 como Punto de Acceso (Access Point)
+    WiFi.mode(WIFI_AP);
+    WiFi.softAP(ssid, password);
+
+    // Servidor Web HTTP para peticiones desde MATLAB y la interfaz Web
+    server.on("/acquire", adquirirDatos);
+    server.begin();
+
+    // IP predeterminada de la ESP32 en modo AP: 192.168.4.1
+}
+```
+
+En el entorno de MATLAB se desarrolló un script que realiza solicitudes HTTP a la dirección IP de la ESP32 (``192.168.4.1``), descargando ventanas de adquisición de 30 segundos y reconstruyendo el vector de tiempo $t$ a partir de la frecuencia de muestreo$.
+
+```matlab
+%% CONFIGURACIÓN DE CONEXIÓN EN MATLAB
+
+% IP por defecto de la ESP32 en modo Access Point
+ESP32_IP = "192.168.4.1"; 
+duracion = 30; % Segundos de adquisición
+
+% URL para solicitar el bloque de datos JSON mediante HTTP GET
+url = sprintf("http://%s/acquire?duration=%d", ESP32_IP, duracion);
+
+% Petición de datos a la red de la ESP32
+options = weboptions('Timeout', 40, 'ContentType', 'json');
+data = webread(url, options);
+
+% Extracción del vector de señal y tiempo
+Fs = data.fs;
+GSR = double(data.voltage);
+t = (0:length(GSR)-1)' / Fs;
+```
+
+Para suavizar los trazos y mitigar el ruido de alta frecuencia en la señal capturada, se aplicó un filtro de media móvil con una ventana de 20 muestras en MATLAB.
+
+```matlab
+% Post-procesamiento y filtrado de la señal en MATLAB
+load('senal.mat');
+GSR = senalGSR(:, 2);
+
+ventana = 20;
+GSR_filtrada = movmean(GSR, ventana);
+
+% Gráfica de la señal filtrada
+figure;
+plot(t, GSR_filtrada, 'LineWidth', 1.5);
+xlabel('Tiempo (s)');
+ylabel('Voltaje (V)');
+title('Señal GSR - Correr');
+grid on;
+```
+
+#### 1.3. Comportamiento en Pruebas
+
+Se registró la señal GSR durante la realización de skipping (correr en el sitio) y al realizar la transición rápida de estar sentado a ponerse de pie. En las gráficas obtenidas se presenta el comportamiento de la señal y el incremento en sus valores de voltaje para ambos escenarios.
+
+<img width="962" height="637" alt="image" src="https://github.com/user-attachments/assets/b1e3c749-dc76-4063-aa6f-f9e1459bff29" />
+
+<img width="950" height="637" alt="image" src="https://github.com/user-attachments/assets/14f953e6-c05d-478a-9898-97c4990abac5" />
 
 > ### Parte C
 
