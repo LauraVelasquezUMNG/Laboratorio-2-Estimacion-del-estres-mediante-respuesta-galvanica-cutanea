@@ -30,7 +30,13 @@ La GSR también se ha aplicado en campos más amplios que la psicofisiología cl
 
 > ### Parte B
 
+### 1. Captura en Tiempo Real - Evaluación de la Señal
 
+Para la etapa de adquisición y procesamiento digital, el circuito de acondicionamiento de la señal GSR se montó en protoboard y se conectó al pin analógico $GPIO34$ de la tarjeta de desarrollo ESP32. La programación y el despliegue del firmware se llevaron a cabo utilizando _**Visual Studio Code**_ (VS Code) junto con el entorno de desarrollo **_PlatformIO_**, aprovechando sus herramientas de depuración y gestión de librerías para proyectos basados en el entorno de Arduino.
+
+El microcontrolador ESP32 se configuró en modo I (GSR_ESP32), permitiendo una comunicación inalámbrica directa con el equipo de cómputo sin depender de una red externa. El firmware ejecuta un muestreo continuo a una frecuencia de $100\text{ Hz}$ ($10\text{ ms}$ entre lecturas). Cada valor del ADC de 12 bits ($0 - 4095$) se convierte a su equivalente en voltaje ($0 - 3.3\text{ V}$) y posteriormente se transforma a unidades de conductancia en microSiemens ($\mu\text{S}$), por medio de la expresión que define la resistencia de la piel.
+
+$$R_{piel} = R \cdot \frac{V_{CC}-V_{GSR}}{V_{GSR}}$$
 
 > ### Parte C
 
