@@ -178,6 +178,57 @@ Se registró la señal GSR durante la realización de skipping (correr en el sit
 
 <img width="950" height="637" alt="image" src="https://github.com/user-attachments/assets/14f953e6-c05d-478a-9898-97c4990abac5" />
 
+### 2. Prueba de Inspiración - Niveles de Estrés
+
+#### 2.1. Respuesta a Inspiración Profunda
+
+Para evaluar la respuesta electrodérmica ante un estímulo controlado, se le pidió al sujeto de prueba que, estando en reposo, realizara una inspiración profunda seguida de una exhalación lenta. Se muestra la gráfica a continuación:
+
+<img width="962" height="637" alt="image" src="https://github.com/user-attachments/assets/3b3fcc67-9106-48f5-854e-2d9a2685a383" />
+
+#### 2.2. Sistema de Calibración - Determinación de Niveles de Estrés
+
+Con el fin de adaptar las lecturas a la fisiología de cada usuario, el firmware de la ESP32 realiza un proceso de autocalibración durante los primeros 15 segundos en los que el sujeto permanece en reposo. En este periodo se promedian las muestras de conductancia para establecer el nivel basal ($SCL$). A partir de este valor de referencia, se calcula en tiempo real el cambio porcentual de la señal y se asigna el nivel de estrés según los umbrales definidos: Poco Estrés ($< 5\%$), Estrés Moderado ($5\% - 20\%$) y Estrés Elevado ($> 20\%$).
+
+```cpp
+// CALIBRACIÓN BASAL Y DETERMINACIÓN DEL NIVEL DE ESTRÉS
+
+void determinarNivel()
+{
+    if (!calibrado || conductanciaBase <= 0.001)
+    {
+        cambioGSR = 0.0;
+        porcentajeEstres = 0.0;
+        nivelEstres = "CALIBRANDO";
+        return;
+    }
+
+    // Cambio absoluto respecto al basal
+    cambioGSR = conductancia_uS - conductanciaBase;
+
+    // Cambio porcentual respecto al basal
+    porcentajeEstres = (cambioGSR / conductanciaBase) * 100.0;
+
+    // Limitación de rango (0 % a 100 %)
+    if (porcentajeEstres < 0.0) porcentajeEstres = 0.0;
+    if (porcentajeEstres > 100.0) porcentajeEstres = 100.0;
+
+    // Clasificación según umbrales (5% y 20%)
+    if (porcentajeEstres < UMBRAL_MODERADO)
+    {
+        nivelEstres = "POCO ESTRES";
+    }
+    else if (porcentajeEstres < UMBRAL_ELEVADO)
+    {
+        nivelEstres = "ESTRES MODERADO";
+    }
+    else
+    {
+        nivelEstres = "ESTRES ELEVADO";
+    }
+}
+```
+
 > ### Parte C
 
 ### 1. Procedimiento General
