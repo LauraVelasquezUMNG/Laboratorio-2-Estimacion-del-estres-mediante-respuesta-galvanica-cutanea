@@ -70,11 +70,11 @@ Este valor está muy por debajo de 1 mA (aproximadamente 13.6 veces menor que la
 
 Para la captura de la respuesta galvánica cutánea se diseñó un dispositivo vestible en forma de manilla, ubicado en la palma de la mano, región anatómica seleccionada por su alta densidad de glándulas sudoríparas ecrinas y su sensibilidad conocida a la actividad simpática, lo que la convierte en un sitio estándar para la adquisición de señales de EDA/GSR con buena relación señal-ruido.
 
-- Electrodos: como elemento sensor se emplearon dos electrodos metálicos reutilizados de la carcasa de baterías grandes, aprovechando su superficie de contacto amplia y su naturaleza conductora. Se optó por esta alternativa metálica por su disponibilidad y facilidad de fijación mecánica sobre la manilla.
+- **Electrodos:** como elemento sensor se emplearon dos electrodos metálicos reutilizados de la carcasa de baterías grandes, aprovechando su superficie de contacto amplia y su naturaleza conductora. Se optó por esta alternativa metálica por su disponibilidad y facilidad de fijación mecánica sobre la manilla.
 
-- Sujeción: los electrodos se fijaron a una cinta de velcro, que permite ajustar la manilla firmemente alrededor de la palma para asegurar un contacto piel-electrodo constante y minimizar artefactos de movimiento durante la adquisición, sin comprometer la comodidad del sujeto de prueba durante el uso prolongado del dispositivo.
+- **Sujeción:** los electrodos se fijaron a una cinta de velcro, que permite ajustar la manilla firmemente alrededor de la palma para asegurar un contacto piel-electrodo constante y minimizar artefactos de movimiento durante la adquisición, sin comprometer la comodidad del sujeto de prueba durante el uso prolongado del dispositivo.
 
-- Transmisión: para la adquisición y transmisión de la señal se utilizó un microcontrolador ESP32 por contar con conectividad Wi-Fi/Bluetooth integrada, lo que permitió cumplir con la transmisión inalámbrica de los datos hacia el computador sin necesidad de módulos de comunicación adicionales para la visualización de los parámetros seleccionados.
+- **Transmisión:** para la adquisición y transmisión de la señal se utilizó un microcontrolador ESP32 por contar con conectividad Wi-Fi/Bluetooth integrada, lo que permitió cumplir con la transmisión inalámbrica de los datos hacia el computador sin necesidad de módulos de comunicación adicionales para la visualización de los parámetros seleccionados.
 
 En conjunto, el dispositivo integra el circuito divisor de tensión, con el ESP32, formando un sistema vestible compacto capaz de capturar y transmitir de forma continua las variaciones de la conductancia cutánea del sujeto.
 
