@@ -76,7 +76,9 @@ La inspiración súbita, por su parte, al ser un estímulo puramente autonómico
 
 **3.2 Comportamiento de la señal durante la actividad física**
 
-A diferencia de la SCR única registrada durante la inspiración, el skipping produjo un registro con varios picos y valles a lo largo de los 30 s (t ≈ 4-5 s, 7-9 s, 12-13 s y 21 s), correspondientes al carácter sostenido y rítmico del ejercicio: cada salto genera un nuevo impulso de activación antes de que el anterior termine de disiparse, lo que da lugar a esta sucesión de picos en lugar de un único ascenso y descenso como en la inspiración. Esto indica que el sistema logró mantener el registro de la señal durante todo el ejercicio, sin interrupciones ni pérdida de datos, pese a tratarse de la prueba con mayor movimiento de las tres. El resultado confirma que el montaje sobre la palma de la mano soporta el desplazamiento del brazo y el impacto repetido de los saltos sin que la adquisición se detenga o se sature.
+A diferencia de la SCR única registrada durante la inspiración, el skipping produjo un registro con varios picos y valles a lo largo de los 30 s (t ≈ 4-5 s, 7-9 s, 12-13 s y 21 s), correspondientes al carácter sostenido y rítmico del ejercicio: cada salto genera un nuevo impulso de activación antes de que el anterior termine de disiparse, lo que da lugar a esta sucesión de picos en lugar de un único ascenso y descenso como en la inspiración. 
+
+Esto indica que el sistema logró mantener el registro de la señal durante todo el ejercicio, sin interrupciones ni pérdida de datos, pese a tratarse de la prueba con mayor movimiento de las tres. El resultado confirma que el montaje sobre la palma de la mano soporta el desplazamiento del brazo y el impacto repetido de los saltos sin que la adquisición se detenga o se sature.
 
 **3.3 Análisis 1 — Aplicabilidad del sistema en entornos cotidianos**
 
@@ -94,7 +96,7 @@ En consecuencia, el sistema desarrollado constituye una prueba de concepto sóli
 
 **Pregunta 1: ¿A qué se debe que una inspiración profunda incremente la magnitud de la respuesta galvánica cutánea (GSR)?**
 
-Esto se debe a la particularidad de la inervación de las glándulas sudoríparas ecrinas: reciben únicamente fibras simpáticas, pero de tipo colinérgico, por lo que cualquier descarga simpática se traduce directamente en más sudoración y, por tanto, en mayor conductancia cutánea [5]. Una inspiración profunda y súbita activa mecanorreceptores de estiramiento pulmonar, cuya señal asciende al tronco encefálico y genera una breve activación simpática generalizada, reforzada además por el componente de alerta que suele acompañar a una inhalación brusca [6]. Esto concuerda con lo observado: el ascenso de la señal fue rápido, propio de la latencia corta de una SCR, mientras que el retorno al basal fue mucho más lento, ya que depende de procesos pasivos (difusión y evaporación del sudor) y no de un control neural activo como el ascenso [8].
+Esto se debe a la particularidad de la inervación de las glándulas sudoríparas ecrinas: reciben únicamente fibras simpáticas, pero de tipo colinérgico, por lo que cualquier descarga simpática se traduce directamente en más sudoración y, por tanto, en mayor conductancia cutánea [5]. Una inspiración profunda y súbita activa mecanorreceptores de estiramiento pulmonar, cuya señal asciende al tronco encefálico y genera una breve activación simpática generalizada, reforzada además por el componente de alerta que suele acompañar a una inhalación brusca [6]. Esto concuerda con lo observado: el ascenso de la señal fue rápido, propio de la latencia corta de una SCR, mientras que el retorno al basal fue mucho más lento, debido a que depende de procesos pasivos (difusión y evaporación del sudor) y no de un control neural activo como el ascenso [8].
 
 **Pregunta 2: ¿Cuáles serían las ventajas y desventajas de utilizar la GSR como indicador de estrés?**
 
