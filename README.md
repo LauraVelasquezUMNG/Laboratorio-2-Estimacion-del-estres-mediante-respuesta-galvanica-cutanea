@@ -58,17 +58,17 @@ Sobre esta base se evaluó el comportamiento del dispositivo ante tres condicion
 
 Al expresar las tres condiciones en términos de conductancia ($\mu\text{S}$) en lugar de voltaje crudo, se hace evidente que la puesta en pie generó, por un margen amplio, la mayor activación relativa ($\approx 142\ \%$). Esto es consistente con que este estímulo combina dos mecanismos simpáticos simultáneos: por un lado, la respuesta barorreceptora ante el cambio ortostático, que exige una activación simpática rápida para mantener la presión de perfusión cerebral al ponerse de pie, y por otro, la anticipación motora y el esfuerzo postural del propio movimiento. Ambos mecanismos convergen sobre las glándulas sudoríparas ecrinas de inervación simpática colinérgica, amplificando la respuesta de conductancia muy por encima de la generada por la inspiración aislada.
 
-La inspiración súbita, por su parte, al ser un estímulo puramente autonómico —sin componente motor ni cambio postural—, generó una respuesta más contenida ($\approx 46\ \%$) pero con la morfología más nítida de las tres: una única SCR bien definida, de ascenso rápido y recuperación lenta, coherente con el patrón clásico descrito para la actividad electrodérmica ante un estímulo discreto.
+La inspiración súbita, por su parte, al ser un estímulo puramente autonómico —sin componente motor ni cambio postural—, generó una respuesta más contenida ($\approx 46\ \%$) pero con la morfología más nítida de las tres: una SCR bien definida, de ascenso rápido y recuperación lenta, coherente con el patrón clásico descrito para la actividad electrodérmica ante un estímulo discreto.
 
 **3.2 Comportamiento de la señal durante la actividad física**
 
-El skipping, siendo la actividad más dinámica de las tres pruebas, mostró el patrón más rico en información de la serie: múltiples picos y valles a lo largo del registro (t ≈ 4-5 s, 7-9 s, 12-13 s y 21 s), reflejo de la naturaleza sostenida y rítmica del ejercicio, en contraste con la SCR única de la inspiración. Este comportamiento evidencia que el sistema es capaz de capturar señal útil incluso durante movimiento activo, un escenario más exigente para cualquier sensor de contacto.
+El skipping, siendo la actividad más dinámica de las tres pruebas, mostró el patrón con mayor detalle de la serie: múltiples picos y valles a lo largo del registro (t ≈ 4-5 s, 7-9 s, 12-13 s y 21 s), reflejo de la naturaleza sostenida y rítmica del ejercicio, en contraste con la SCR única de la inspiración. Este comportamiento evidencia que el sistema es capaz de capturar señal útil incluso durante movimiento activo.
 
 **3.3 Análisis 1 — Aplicabilidad del sistema en entornos cotidianos de baja movilidad**
 
 El sistema, al operar de forma completamente inalámbrica y visualizarse en un celular sin necesidad de software adicional, resulta especialmente idóneo para escenarios de baja a moderada movilidad, como el trabajo de oficina, la actividad académica en aula o tareas domésticas sedentarias, donde el interés es detectar picos de activación simpática asociados a carga cognitiva o emocional, tal como se evidenció en el registro de "estrés elevado" durante la tarea de concentración. En estos contextos, con la mano relativamente quieta sobre el electrodo, la señal de conductancia refleja de forma confiable el estado autonómico real del usuario, validando el sistema como una herramienta práctica de monitoreo cotidiano.
 
-De cara a escenarios con mayor movilidad, el sistema ya demuestra un principio de funcionamiento sólido y sienta una base clara para incorporar, en versiones futuras, una sujeción más firme del electrodo o una segunda variable de referencia que amplíe su alcance a contextos con desplazamiento activo.
+De cara a escenarios con mayor movilidad, el sistema ya sienta un principio de funcionamiento sólido, con una clara proyección hacia versiones futuras que amplíen su alcance a contextos con desplazamiento activo.
 
 **3.4 Análisis 2 — Alcance y proyección hacia el monitoreo de estrés neonatal**
 
